@@ -1,0 +1,29 @@
+TODO List
+
+
+// TIME : 1-2 days
+* Add delete user
+* Move code to "RMC Backend"
+
+//EASY ONBOARDING
+* make 'create table' C# so LESS setup is needed on backend?
+
+//LATENCY
+* add 3rd output to always show the Latency
+
+//OPTIONAL
+* Rethink "JawsConfiguration". Remove menuitem? add/remove fields?
+* Store token to disc and keep the session alive? (or just document how its possible = yes)
+* Add the amazon-opens-browser to login? That's cool but doesn't prove out much architecture-wise. Maybe no.
+
+//ERRORS
+* There are likely many missing errors. Sanity check at least, pass bad data to EVERY call once. Validate UI updates properly
+
+//EVENTS
+//Pass response as argument to EVERY event? (Needed in production, but maybe not here in demo)
+
+// TIME : 1 day
+* Update sar.com/backend-portfolio
+* Update packages page to show new one
+* Update sar.com/rmc-jaws and /rmc-aws to point to the same page
+* Create medium articles (1. backend, 2 amazon, 3. firebase, 4. beamable, 5. rmc backend
