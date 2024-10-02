@@ -1,0 +1,6 @@
+Source Url: 
+* https://aws.amazon.com/sdk-for-net/
+
+Changelog: 
+* Some unneeded DLLs removed
+* Moved to /Assets/3rdParty/
