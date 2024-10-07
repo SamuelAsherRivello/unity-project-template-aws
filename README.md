@@ -74,7 +74,8 @@ This project is a living template. It showcases the best practices and coding st
 Here are more articles from Samuel Asher Rivello.
 
 **Portfolio**
-* [SamuelAsherRivello.com/backend-portfolio](https://www.SamuelAsherRivello.com/backend-portfolio)
+* [SamuelAsherRivello.com/backend-portfolio](https://www.SamuelAsherRivello.com/backend-portfolio) - Overview
+* [SamuelAsherRivello.com/rmc-jaws](https://www.SamuelAsherRivello.com/rmc-jaws) - Details
 
 **Medium**
 * [Best Practices — 1 — Unity Project Structure](https://samuel-asher-rivello.medium.com/unity-project-structure-a694792cefed)
