@@ -65,7 +65,7 @@ This project is a living template. It showcases the best practices and coding st
 **Dependencies**
 * `Packages` - Already included via [Unity Package Manager](https://docs.unity3d.com/Manual/upm-ui.html) as this [Version](./Unity/Packages/manifest.json)
 * `DLLs` - Already included via [Unity/Assets/3rdParty/Amazon](./Unity/Assets/3rdParty/Amazon/)
-* 
+ 
 <BR>
 <BR>
 
