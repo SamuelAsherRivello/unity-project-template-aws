@@ -11,7 +11,7 @@ The project includes best practices for **project structure** and **C# coding st
 Checkout more info here;
 * [SamuelAsherRivello.com/backend-portfolio](https://www.SamuelAsherRivello.com/backend-portfolio) - Overview
 * [SamuelAsherRivello.com/rmc-aws](https://www.SamuelAsherRivello.com/rmc-aws) - Details
-* 
+
 <BR>
 
 **Getting Started: Steps**
