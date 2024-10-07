@@ -8,8 +8,10 @@ This repo represents the ideal starting point for new Unity projects with **[Ama
 
 The project includes best practices for **project structure** and **C# coding standards**.
 
-Checkout [SamuelAsherRivello.com/backend-portfolio](https://www.SamuelAsherRivello.com/backend-portfolio) for more info.
-
+Checkout more info here;
+* [SamuelAsherRivello.com/backend-portfolio](https://www.SamuelAsherRivello.com/backend-portfolio) - Overview
+* [SamuelAsherRivello.com/rmc-aws](https://www.SamuelAsherRivello.com/rmc-aws) - Details
+* 
 <BR>
 
 **Getting Started: Steps**
