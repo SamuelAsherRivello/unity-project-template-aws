@@ -7,7 +7,7 @@ namespace RMC.Backend.Baas
     /// <summary>
     /// Defines the API: This subsystem
     /// </summary>
-    public interface ICloudCode : IInitializableAsync, IConfigurable
+    public interface ICloudCodeSubsystem : IInitializableAsync, IConfigurable
     {
         //  Properties  ------------------------------------
         CloudCodeEvent OnInitialized { get; }

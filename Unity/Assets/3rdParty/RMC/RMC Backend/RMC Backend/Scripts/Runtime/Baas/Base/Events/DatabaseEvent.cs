@@ -2,5 +2,5 @@ using UnityEngine.Events;
 
 namespace RMC.Backend.Baas
 {
-	public class DatabaseEvent : UnityEvent<IDatabase>{}
+	public class DatabaseEvent : UnityEvent<IDatabaseSubsystem>{}
 }

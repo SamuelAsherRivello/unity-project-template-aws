@@ -6,7 +6,7 @@ namespace RMC.Backend.Baas
     /// <summary>
     /// Defines the API: This subsystem
     /// </summary>
-    public interface IDatabase : IInitializableAsync, IConfigurable
+    public interface IDatabaseSubsystem : IInitializableAsync, IConfigurable
     {
         //  Properties  ------------------------------------
         DatabaseEvent OnInitialized { get; }

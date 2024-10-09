@@ -33,18 +33,18 @@ namespace RMC.Backend.Baas.Aws
 		}
 
 		public bool IsInitialized { get { return _isInitialized; }}
-		public IAccounts Accounts { get { return _accounts; }}
-		public ICloudCode CloudCode { get { return _cloudCode; }}
-		public IDatabase Database { get { return _database; }}
+		public IAccountsSubsystem AccountsSubsystem { get { return _accountsSubsystem; }}
+		public ICloudCodeSubsystem CloudCodeSubsystem { get { return _cloudCodeSubsystem; }}
+		public IDatabaseSubsystem DatabaseSubsystem { get { return _databaseSubsystem; }}
 
 
 		//  Fields ----------------------------------------
 		private static Buff _Instance = null;
 		private bool _isInitialized = false;
 		
-		private readonly JawsAccounts _accounts;    //TODO: Replace with new buff-type here...
-		private readonly JawsCloudCode _cloudCode;  //TODO: Replace with new buff-type here...
-		private readonly JawsDatabase _database;    //TODO: Replace with new buff-type here...
+		private readonly JawsAccountsSubsystem _accountsSubsystem;    //TODO: Replace with new buff-type here...
+		private readonly JawsCloudCodeSubsystem _cloudCodeSubsystem;  //TODO: Replace with new buff-type here...
+		private readonly JawsDatabaseSubsystem _databaseSubsystem;    //TODO: Replace with new buff-type here...
         
 		
 		//  Initialization --------------------------------
@@ -52,9 +52,9 @@ namespace RMC.Backend.Baas.Aws
 		{
 			// Create all subsystems in constructor
 			// To allow for any early subscriptions
-			_accounts = new JawsAccounts();
-			_cloudCode = new JawsCloudCode();
-			_database = new JawsDatabase();
+			_accountsSubsystem = new JawsAccountsSubsystem();
+			_cloudCodeSubsystem = new JawsCloudCodeSubsystem();
+			_databaseSubsystem = new JawsDatabaseSubsystem();
 		}
         
 		
@@ -70,9 +70,9 @@ namespace RMC.Backend.Baas.Aws
 			_isInitialized = true;
 	        
 			// Initialize Subsystems
-			await _accounts.InitializeAsync();
-			await _cloudCode.InitializeAsync();
-			await _database.InitializeAsync();
+			await _accountsSubsystem.InitializeAsync();
+			await _cloudCodeSubsystem.InitializeAsync();
+			await _databaseSubsystem.InitializeAsync();
 	        
 			//
 			OnInitialized.Invoke(this);

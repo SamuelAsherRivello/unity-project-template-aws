@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using RMC.Core.Exceptions;
+using UnityEngine;
 
 namespace RMC.Backend.Baas.Aws
 {
@@ -33,17 +34,31 @@ namespace RMC.Backend.Baas.Aws
 		}
 
 		public bool IsInitialized { get { return _isInitialized; }}
-		public IAccounts Accounts { get { return _accounts; }}
-		public ICloudCode CloudCode { get { return _cloudCode; }}
-		public IDatabase Database { get { return _database; }}
+		public IAccountsSubsystem Accounts { get { return _accounts; }}
+		public IDatabaseSubsystem Database { get { return _database; }}
+		
+		public ICloudCodeSubsystem CloudCode { get { return _cloudCode; }}
+		public IAISubsystem AI { get { return _ai; }}
 
 
 		//  Fields ----------------------------------------
-		private static Jaws _Instance = null;
 		private bool _isInitialized = false;
-		private readonly JawsAccounts _accounts;
-		private readonly JawsCloudCode _cloudCode;
-		private readonly JawsDatabase _database;
+		private readonly JawsAccountsSubsystem _accounts;
+		private readonly JawsCloudCodeSubsystem _cloudCode;
+		private readonly JawsDatabaseSubsystem _database;
+		private readonly JawsAISubsystem _ai;
+		
+		
+		//  Statics ----------------------------------------
+		private static Jaws _Instance = null;
+		
+		[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+		private static void InitializeOnLoad()
+		{
+			//Manually clear since fast compile is supported
+			//https://docs.unity3d.com/6000.0/Documentation/ScriptReference/InitializeOnEnterPlayModeAttribute.html
+			_Instance = null;
+		}
         
 		
 		//  Initialization --------------------------------
@@ -51,9 +66,10 @@ namespace RMC.Backend.Baas.Aws
 		{
 			// Create all subsystems in constructor
 			// To allow for any early subscriptions
-			_accounts = new JawsAccounts();
-			_cloudCode = new JawsCloudCode();
-			_database = new JawsDatabase();
+			_accounts = new JawsAccountsSubsystem();
+			_cloudCode = new JawsCloudCodeSubsystem();
+			_database = new JawsDatabaseSubsystem();
+			_ai = new JawsAISubsystem();
 		}
         
 		
@@ -72,6 +88,7 @@ namespace RMC.Backend.Baas.Aws
 			await _accounts.InitializeAsync();
 			await _cloudCode.InitializeAsync();
 			await _database.InitializeAsync();
+			await _ai.InitializeAsync();
 	        
 			//
 			OnInitialized.Invoke(this);

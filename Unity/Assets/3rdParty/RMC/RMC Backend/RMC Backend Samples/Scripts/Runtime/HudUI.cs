@@ -25,6 +25,7 @@ namespace RMC.Backend.Baas.Aws.Samples
         public Button Button03 { get { return _uiDocument?.rootVisualElement.Q<VisualElement>("Buttons").ElementAt(2) as Button; }}
         public Button Button04 { get { return _uiDocument?.rootVisualElement.Q<VisualElement>("Buttons").ElementAt(3) as Button; }}
         public Button Button05 { get { return _uiDocument?.rootVisualElement.Q<VisualElement>("Buttons").ElementAt(4) as Button; }}
+        public Button Button06 { get { return _uiDocument?.rootVisualElement.Q<VisualElement>("Buttons").ElementAt(5) as Button; }}
         public VisualElement Buttons { get { return _uiDocument?.rootVisualElement.Q<VisualElement>("Buttons"); }}
         
         public bool IsEnabledUI
@@ -45,11 +46,11 @@ namespace RMC.Backend.Baas.Aws.Samples
         
         }
         
-        public void InputTextField01Clear() { InputTextField01.label = " "; InputTextField01.value = " "; }
-        public void InputTextField02Clear() { InputTextField02.label = " "; InputTextField02.value = " "; }
-        public void OutputTextField01Clear() { OutputTextField01.label = " "; OutputTextField01.value = " "; }
-        public void OutputTextField02Clear() { OutputTextField02.label = " ";OutputTextField02.value = " "; }
-        public void OutputTextField03Clear() { OutputTextField03.label = " ";OutputTextField03.value = " "; }
+        public void ClearTextField(TextField textField) 
+        { 
+            textField.label = " "; 
+            textField.value = " "; 
+        }
         
         //  Fields ----------------------------------------
         [SerializeField]

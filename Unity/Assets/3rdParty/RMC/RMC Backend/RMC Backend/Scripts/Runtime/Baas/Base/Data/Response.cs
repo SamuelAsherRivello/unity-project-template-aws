@@ -71,7 +71,6 @@ namespace RMC.Backend.Baas
 		public Table Table { get; set; }
 	}
 	
-	//Database
 	public class ItemCreateResponse : Response
 	{
 		public Table Table { get; set; }
@@ -88,6 +87,17 @@ namespace RMC.Backend.Baas
 	{
 		public Table Table { get; set; }
 		public InventoryItem Item { get; set; }
+	}
+	
+	//AI
+	public class ListAIModelsResponse: Response
+	{
+	
+	}
+	
+	public class InvokeAIModelResponse: Response
+	{
+	
 	}
 	
 }

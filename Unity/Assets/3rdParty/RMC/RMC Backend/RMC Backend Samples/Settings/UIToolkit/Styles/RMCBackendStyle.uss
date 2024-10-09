@@ -71,6 +71,7 @@
 
 .button {
     height: 40px;
-    flex-grow: 1;
-    width: 100px;
+    flex-grow: 0;
+    width: 150px;
+    flex-shrink: 0;
 }

@@ -17,7 +17,7 @@ namespace RMC.Backend.Baas.Aws
 	/// Backend subsystem related to <see cref="User"/>
 	/// </summary>
 	
-	public class JawsAccounts : IAccounts
+	public class JawsAccountsSubsystem : IAccountsSubsystem
 	{
 		//  Events ----------------------------------------
 		public AccountsEvent OnInitialized { get; } = new AccountsEvent();
@@ -53,7 +53,7 @@ namespace RMC.Backend.Baas.Aws
 
         
 		//  Initialization --------------------------------
-		public JawsAccounts()
+		public JawsAccountsSubsystem()
 		{
 			
 		}

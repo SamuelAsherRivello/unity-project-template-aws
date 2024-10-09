@@ -17,7 +17,7 @@ namespace RMC.Backend.Baas.Aws
 	/// <summary>
 	/// Backend subsystem related to calling backend cloud code.
 	/// </summary>
-	public class JawsCloudCode : ICloudCode
+	public class JawsCloudCodeSubsystem : ICloudCodeSubsystem
 	{
 		//  Events ----------------------------------------
 		public CloudCodeEvent OnInitialized { get; } = new CloudCodeEvent();
@@ -48,7 +48,7 @@ namespace RMC.Backend.Baas.Aws
 
 
 		//  Initialization --------------------------------
-		public JawsCloudCode()
+		public JawsCloudCodeSubsystem()
 		{
 
 		}

@@ -5,7 +5,7 @@ namespace RMC.Backend.Baas
     /// <summary>
     /// Defines the API: This subsystem
     /// </summary>
-    public interface IAccounts : IInitializableAsync, IConfigurable
+    public interface IAccountsSubsystem : IInitializableAsync, IConfigurable
     {
         //  Properties  ------------------------------------
         AccountsEvent OnInitialized { get; }

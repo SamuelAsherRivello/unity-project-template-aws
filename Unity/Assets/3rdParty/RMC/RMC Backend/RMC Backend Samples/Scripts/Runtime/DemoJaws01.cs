@@ -51,7 +51,9 @@ namespace RMC.Backend.Baas.Aws.Samples
         private Button AccountsSignOutButton { get { return _hudUI.Button02; }}
         private Button DatabaseCreateTableButton { get { return _hudUI.Button03; }}
         private Button DatabaseUpdateTableButton { get { return _hudUI.Button04; }}
-        private Button CloudCodeRunButton { get { return _hudUI.Button05; }}
+        private Button CloudCodeMethodCallButton { get { return _hudUI.Button05; }}
+        private Button AIInvokeButton { get { return _hudUI.Button06; }}
+        
 
         //  Fields ----------------------------------------
         [Header("UI")]
@@ -98,10 +100,10 @@ namespace RMC.Backend.Baas.Aws.Samples
             _hudUI.IsEnabledUI = true;
 
             // UI
-            _hudUI.InputTextField01Clear();
-            _hudUI.InputTextField02Clear();
-            _hudUI.OutputTextField01Clear();
-            _hudUI.OutputTextField02Clear();
+            _hudUI.ClearTextField(_hudUI.InputTextField01);
+            _hudUI.ClearTextField(_hudUI.InputTextField02);
+            _hudUI.ClearTextField(_hudUI.OutputTextField01);
+            _hudUI.ClearTextField(_hudUI.OutputTextField02);
             
             AccountsSignInButton.text = "1. Create & Sign In\n(Accounts)";
             AccountsSignInButton.clicked += async () =>
@@ -138,10 +140,16 @@ namespace RMC.Backend.Baas.Aws.Samples
                 await DoDatabaseUpdateTable(item);
             };
             
-            CloudCodeRunButton.text = "5. Run Code\n(CloudCode)";
-            CloudCodeRunButton.clicked += async () =>
+            CloudCodeMethodCallButton.text = "5. Method Call\n(CloudCode)";
+            CloudCodeMethodCallButton.clicked += async () =>
             {
-                await DoCloudCodeRun();
+                await DoCloudCodeMethodCall();
+            };
+            
+            AIInvokeButton.text = "6. Invoke\n(AI)";
+            AIInvokeButton.clicked += async () =>
+            {
+                await DoAIInvoke();
             };
             
             // Init
@@ -178,7 +186,8 @@ namespace RMC.Backend.Baas.Aws.Samples
             AccountsSignOutButton.SetEnabled(hasUser);
             DatabaseCreateTableButton.SetEnabled(hasUser); //Allow calling this regardless of hasTable
             DatabaseUpdateTableButton.SetEnabled(hasUser && _demoModel.DatabaseHasTable);
-            CloudCodeRunButton.SetEnabled(hasUser);
+            CloudCodeMethodCallButton.SetEnabled(hasUser);
+            AIInvokeButton.SetEnabled(hasUser);
             
             //Cosmetic delay
             await Task.Delay(_flickerDurationMS/2);
@@ -200,8 +209,9 @@ namespace RMC.Backend.Baas.Aws.Samples
             
             _hudUI.InputTextField02.label = $"Password";
             _hudUI.InputTextField02.value = $"{_userPassword}";
-            _hudUI.OutputTextField01Clear();
-            _hudUI.OutputTextField02Clear();
+            _hudUI.ClearTextField(_hudUI.OutputTextField01);
+            _hudUI.ClearTextField(_hudUI.OutputTextField02);
+
             
             
             
@@ -244,8 +254,8 @@ namespace RMC.Backend.Baas.Aws.Samples
             // UI
             _hudUI.OutputTextField01.label = $"User";
             _hudUI.OutputTextField01.value = $"Email = {user.Email}, TokenId = {user.TokenId}, AccessToken = {user.AccessToken}";
-            _hudUI.OutputTextField02Clear();
-            _hudUI.OutputTextField02Clear();
+            _hudUI.ClearTextField(_hudUI.OutputTextField01);
+            _hudUI.ClearTextField(_hudUI.OutputTextField02);
    
             _hudUI.IsEnabledUI = true;
         }
@@ -262,8 +272,8 @@ namespace RMC.Backend.Baas.Aws.Samples
             
             _hudUI.InputTextField02.label = $"Password";
             _hudUI.InputTextField02.value = $"{_userPassword}";
-            _hudUI.OutputTextField01Clear();
-            _hudUI.OutputTextField02Clear();
+            _hudUI.ClearTextField(_hudUI.OutputTextField01);
+            _hudUI.ClearTextField(_hudUI.OutputTextField02);
             
             
             //////////////////////////////////////
@@ -287,9 +297,9 @@ namespace RMC.Backend.Baas.Aws.Samples
                 }
             }
 
-            _hudUI.InputTextField01Clear();
-            _hudUI.InputTextField02Clear();
-            _hudUI.OutputTextField02Clear();
+            _hudUI.ClearTextField(_hudUI.InputTextField01);
+            _hudUI.ClearTextField(_hudUI.InputTextField02);
+            _hudUI.ClearTextField(_hudUI.OutputTextField02);
             _hudUI.OutputTextField01.label = "Result";
             _hudUI.OutputTextField01.value = "Success";
             _hudUI.IsEnabledUI = true;
@@ -305,7 +315,7 @@ namespace RMC.Backend.Baas.Aws.Samples
             
             if (!Jaws.Instance.Accounts.HasUser())
             {
-                Debug.Log($"ReloadDemoDatabase() failed. HasUser() must not be {Jaws.Instance.Accounts.HasUser()}");
+                Debug.Log($"DoDatabaseCreateTable() failed. HasUser() must not be {Jaws.Instance.Accounts.HasUser()}");
             }
             
             //UI
@@ -324,8 +334,8 @@ namespace RMC.Backend.Baas.Aws.Samples
                 _hudUI.DescriptionLabel.text = $"{_descriptionPrefix}Table Read";
                 _hudUI.InputTextField01.label = $"TableName";
                 _hudUI.InputTextField01.value = $"{table.TableName}";
-                _hudUI.OutputTextField01Clear();
-                _hudUI.OutputTextField02Clear();
+                _hudUI.ClearTextField(_hudUI.OutputTextField01);
+                _hudUI.ClearTextField(_hudUI.OutputTextField02);
                 
                 // Call
                 _hudUI.MeasureLatencyBegin();
@@ -363,8 +373,8 @@ namespace RMC.Backend.Baas.Aws.Samples
                 _hudUI.DescriptionLabel.text = $"{_descriptionPrefix}Item Read";
                 _hudUI.InputTextField01.label = $"TableName";
                 _hudUI.InputTextField01.value = $"{table.TableName}";
-                _hudUI.OutputTextField01Clear();
-                _hudUI.OutputTextField02Clear();
+                _hudUI.ClearTextField(_hudUI.OutputTextField01);
+                _hudUI.ClearTextField(_hudUI.OutputTextField02);
                 
                 // Call
                 _hudUI.MeasureLatencyBegin();
@@ -459,8 +469,8 @@ namespace RMC.Backend.Baas.Aws.Samples
                 _hudUI.InputTextField01.label = $"TableName";
                 _hudUI.InputTextField01.value = $"{table.TableName}";
                 _hudUI.DescriptionLabel.text = $"{_descriptionPrefix}Item Update";
-                _hudUI.OutputTextField01Clear();
-                _hudUI.OutputTextField02Clear();
+                _hudUI.ClearTextField(_hudUI.OutputTextField01);
+                _hudUI.ClearTextField(_hudUI.OutputTextField02);
                 
                 // Call
                 _hudUI.MeasureLatencyBegin();
@@ -487,7 +497,7 @@ namespace RMC.Backend.Baas.Aws.Samples
 
         }
         
-        private async Task DoCloudCodeRun()
+        private async Task DoCloudCodeMethodCall()
         {
 
             if (!Jaws.Instance.Accounts.HasUser())
@@ -497,7 +507,7 @@ namespace RMC.Backend.Baas.Aws.Samples
             
             if (!Jaws.Instance.Accounts.HasUser())
             {
-                Debug.Log($"ReloadDemoCloudCode() failed. HasUser() must not be {Jaws.Instance.Accounts.HasUser()}");
+                Debug.Log($"DoCloudCodeMethodCall() failed. HasUser() must not be {Jaws.Instance.Accounts.HasUser()}");
             }
             
             //UI
@@ -520,8 +530,8 @@ namespace RMC.Backend.Baas.Aws.Samples
                 _hudUI.InputTextField01.value = $"{functionName}";
                 _hudUI.InputTextField02.label = $"args";
                 _hudUI.InputTextField02.value = $"{JsonConvert.SerializeObject(args)}";
-                _hudUI.OutputTextField01Clear();
-                _hudUI.OutputTextField02Clear();
+                _hudUI.ClearTextField(_hudUI.OutputTextField01);
+                _hudUI.ClearTextField(_hudUI.OutputTextField02);
                 
                 // Call
                 _hudUI.MeasureLatencyBegin();
@@ -533,8 +543,8 @@ namespace RMC.Backend.Baas.Aws.Samples
                 {
                     _hudUI.OutputTextField01.label = $"Result";
                     _hudUI.OutputTextField01.value = $"{response.Data}";
-                    _hudUI.OutputTextField02Clear();
-                    _hudUI.OutputTextField02Clear();
+                    _hudUI.ClearTextField(_hudUI.OutputTextField01);
+                    _hudUI.ClearTextField(_hudUI.OutputTextField02);
                     
                     //We may or may not have a table at this moment,
                     //but pretend we DO NOT for a clean UX
@@ -549,6 +559,72 @@ namespace RMC.Backend.Baas.Aws.Samples
             //UI
             _hudUI.IsEnabledUI = true;
         }
+        
+        
+         private async Task DoAIInvoke()
+        {
+
+            if (!Jaws.Instance.Accounts.HasUser())
+            {
+                await DoAccountsSignIn();
+            }
+            
+            if (!Jaws.Instance.Accounts.HasUser())
+            {
+                Debug.Log($"DoAIInvoke() failed. HasUser() must not be {Jaws.Instance.Accounts.HasUser()}");
+            }
+            
+            //UI
+            await RefreshUI();
+            _hudUI.IsEnabledUI = false;
+            _hudUI.DescriptionLabel.text = $"{_descriptionPrefix}Invoke AI Prompt";
+
+            //////////////////////////////////////
+            // Subsystem: Cloud Code
+            //////////////////////////////////////
+            if (Jaws.Instance.Accounts.HasUser())
+            {
+                // Prepare 
+                string functionName = "HelloWorld";
+                Dictionary<string, string> args = new Dictionary<string, string>();
+                args.Add("message", "this is from the client");
+                
+                // UI
+                _hudUI.InputTextField01.label = $"functionName";
+                _hudUI.InputTextField01.value = $"{functionName}";
+                _hudUI.InputTextField02.label = $"args";
+                _hudUI.InputTextField02.value = $"{JsonConvert.SerializeObject(args)}";
+                _hudUI.ClearTextField(_hudUI.OutputTextField01);
+                _hudUI.ClearTextField(_hudUI.OutputTextField02);
+                
+                // Call
+                _hudUI.MeasureLatencyBegin();
+                InvokeAIModelResponse response = await Jaws.Instance.AI.InvokeAIModel(new InvokeAIModelRequest());
+                _hudUI.MeasureLatencyEnd();
+                
+                // UI
+                if (response.IsSuccess)
+                {
+                    _hudUI.OutputTextField01.label = $"Result";
+                    _hudUI.OutputTextField01.value = $"{response}";
+                    _hudUI.ClearTextField(_hudUI.OutputTextField01);
+                    _hudUI.ClearTextField(_hudUI.OutputTextField02);
+                    
+                    //We may or may not have a table at this moment,
+                    //but pretend we DO NOT for a clean UX
+                    _demoModel.DatabaseHasTable = false;
+                }
+                else
+                {
+                    _hudUI.OutputTextField02SetError(response.ErrorMessage);
+                }
+       
+            }
+            //UI
+            _hudUI.IsEnabledUI = true;
+        }
+        
+        
         
         
         private void LogResponse(string message, Response response)

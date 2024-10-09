@@ -15,8 +15,9 @@
                 <ui:TextField picking-mode="Ignore" label="Label" value="Value" name="OutputTextField01" />
                 <ui:TextField picking-mode="Ignore" label="Label" value="Value" name="OutputTextField02" />
                 <ui:TextField picking-mode="Ignore" label="Label" value="Value" name="OutputTextField03" />
-                <ui:VisualElement name="Buttons" style="flex-grow: 0; flex-direction: row; padding-top: 10px; padding-right: 0; padding-bottom: 10px; padding-left: 0;">
+                <ui:VisualElement name="Buttons" style="flex-grow: 0; flex-direction: row; padding-top: 10px; padding-right: 0; padding-bottom: 10px; padding-left: 0; flex-wrap: wrap; justify-content: flex-end;">
                     <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" name="Button" class="button" />
+                    <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" class="button" />
                     <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" class="button" />
                     <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" class="button" />
                     <ui:Button parse-escape-sequences="true" display-tooltip-when-elided="true" class="button" />

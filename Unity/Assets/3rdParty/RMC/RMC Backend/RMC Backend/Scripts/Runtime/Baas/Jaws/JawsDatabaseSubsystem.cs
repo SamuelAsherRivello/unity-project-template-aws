@@ -19,7 +19,7 @@ namespace RMC.Backend.Baas.Aws
 	/// <summary>
 	/// Backend subsystem related to database tables.
 	/// </summary>
-	public class JawsDatabase : IDatabase
+	public class JawsDatabaseSubsystem : IDatabaseSubsystem
 	{
 		//  Events ----------------------------------------
 		public DatabaseEvent OnInitialized { get; } = new DatabaseEvent();
@@ -56,7 +56,7 @@ namespace RMC.Backend.Baas.Aws
 
 
 		//  Initialization --------------------------------
-		public JawsDatabase()
+		public JawsDatabaseSubsystem()
 		{
 
 		}
@@ -72,14 +72,12 @@ namespace RMC.Backend.Baas.Aws
 			_configuration = Resources.Load<JawsConfiguration>("JawsConfiguration");
 			RequireConfiguration();
 
-			//line 1
 			var credentials = new CognitoAWSCredentials
 			(
 				_configuration.IdentityPoolId,
 				_configuration.RegionEndpoint
 			);
 			
-			//line2
 			_amazonDynamoDBClient = new AmazonDynamoDBClient(credentials, _configuration.RegionEndpoint);
 
 			_isInitialized = true;
